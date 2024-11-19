@@ -1,0 +1,6 @@
+moviepy
+openai
+Flask
+requests
+pillow
+opencv-python

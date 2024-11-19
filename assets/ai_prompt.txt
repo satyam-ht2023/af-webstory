@@ -1,0 +1,11 @@
+The provided story data contains information about a story, including its title, summary, images, and product details. You need to create an array of video slide objects based on this data. Each video slide represents one frame in a video and contains:
+1.The image to be displayed.
+2.A title summarizing the slide.
+3.A duration for how long the slide should be shown so that generated caption is readable.
+4.A caption that is engaging and concise, derived from the story or product data.
+5.Highlight words within the caption to emphasize key points (e.g., product features or offers).
+6.Colors corresponding to the highlighted words for better visual emphasis.
+7.The position of the caption on the slide (e.g., top-left, bottom-center).
+8.Animation and transition details (e.g., fade-in, zoom-out) suitable for MoviePy.
+Generate a creative response based on the data provided, ensuring that the captions and highlights are derived meaningfully. Highlight words should emphasize key product features, offers, or catchy elements from the story data. Choose transition and animation names compatible with MoviePy. Provide only the array of video slide objects.
+Respond with only a JSON array of video slide objects and no additional text, explanations, or comments

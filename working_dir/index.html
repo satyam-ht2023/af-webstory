@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Video</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Backdrop video (only visible on desktop) */
+    #background-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1; /* Ensure it is behind the main video */
+      filter: blur(20px) brightness(0.7);
+    }
+
+    /* Main video */
+    #video-container {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+    }
+
+    video {
+      border-radius: 60px;
+      padding: 10px 0;
+      max-width: 100%;
+      max-height: calc(100% - 20px);
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    @media (max-width: 768px) {
+      #background-video {
+        display: none; /* Hide the backdrop video on mobile */
+      }
+
+      video {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Backdrop video (only on desktop) -->
+  <video id="background-video" autoplay muted loop playsinline>
+    <source id="background-video-source" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <!-- Main video container -->
+  <div id="video-container">
+    <a id="video-link" href="#" onclick="handleClick(event)" onmousedown="pauseVideo()" onmouseup="resumeVideo()" ontouchstart="pauseVideo()" ontouchend="resumeVideo()">
+      <video id="video" autoplay muted loop playsinline>
+        <source id="video-source" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </a>
+  </div>
+
+  <script>
+    // Parse the query parameters to get widgetID
+    const params = new URLSearchParams(window.location.search);
+    const widgetID = params.get('widgetID');
+    if (!widgetID) {
+      alert("widgetID is required in the query parameters.");
+      throw new Error("widgetID is missing.");
+    }
+
+    // Set video sources dynamically
+    const videoSource = document.getElementById('video-source');
+    const backgroundVideoSource = document.getElementById('background-video-source');
+    const videoPath = `webstory_${widgetID}/video.mp4`;
+    videoSource.src = videoPath;
+    backgroundVideoSource.src = videoPath;
+
+    // Load timestamps.json
+    let timestamps = [];
+    fetch(`webstory_${widgetID}/timestamps.json`)
+      .then(response => response.json())
+      .then(data => {
+        timestamps = data;
+      })
+      .catch(err => {
+        console.error("Failed to load timestamps.json", err);
+        alert("Error loading timestamps.json.");
+      });
+
+    // Handle anchor tag click
+    function handleClick(event) {
+      event.preventDefault();
+
+      const video = document.getElementById('video');
+      const currentTime = video.currentTime;
+
+      // Find the range in which the current time lies
+      const range = timestamps.find(
+        (timestamp) => currentTime >= timestamp.start && currentTime < timestamp.end
+      );
+
+      if (range) {
+        // Open the corresponding URL in a new tab
+        window.open(range.url, '_blank');
+      } else {
+        console.warn("No matching range found for current time:", currentTime);
+      }
+    }
+
+    // Pause and resume video on hold
+    function pauseVideo() {
+      const video = document.getElementById('video');
+      const backgroundVideo = document.getElementById('background-video');
+
+      // Pause both the main video and the background video
+      video.pause();
+      backgroundVideo.pause();
+    }
+
+    function resumeVideo() {
+      const video = document.getElementById('video');
+      const backgroundVideo = document.getElementById('background-video');
+
+      // Resume both the main video and the background video
+      video.play();
+      backgroundVideo.play();
+    }
+  </script>
+</body>
+</html>

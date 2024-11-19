@@ -1,0 +1,67 @@
+[
+    {
+      "product_id": "B09YLWT89W",
+      "duration": 5,
+      "caption": "Aquaguard Sure Delight NXT: India's #1 Water Purifier, now at 47% off! Get superior 6-stage filtration & free service worth ₹2000!",
+      "highlight_words": ["India's #1 Water Purifier", "47% off", "superior 6-stage filtration", "free service worth ₹2000"],
+      "highlight_colors": ["#FF5733", "#FF5733", "#FF5733", "#28A745"],
+      "caption_position": "bottom",
+      "rotation_degree": 0,
+      "transition_in": "fadein",
+      "transition_out": "fadeout",
+      "animation": {
+        "animation_type": "zoom-in",
+        "start_time": 0.0,
+        "end_time": 4.5
+      }
+    },
+    {
+      "product_id": "B09FK9R6Z7",
+      "duration": 6,
+      "caption": "KENT Supreme Copper RO: 39% off! Advanced purification with Copper + TDS control. Free exchange worth INR 1000!",
+      "highlight_words": ["39% off", "Copper + TDS control", "Free exchange worth INR 1000"],
+      "highlight_colors": ["#007BFF", "#FF5733", "#28A745"],
+      "caption_position": "bottom",
+      "rotation_degree": 0,
+      "transition_in": "zoom-in",
+      "transition_out": "zoom-out",
+      "animation": {
+        "animation_type": "fade-in",
+        "start_time": 0.0,
+        "end_time": 5.5
+      }
+    },
+    {
+      "product_id": "B08BJN4MP3",
+      "duration": 7,
+      "caption": "Pureit ECO Water Saver: Save up to 60% water! Advanced UV sterilization & 7-stage purification.",
+      "highlight_words": ["Save up to 60% water", "Advanced UV sterilization", "7-stage purification"],
+      "highlight_colors": ["#FF5733", "#00BFFF", "#28A745"],
+      "caption_position": "bottom",
+      "rotation_degree": 0,
+      "transition_in": "fadein",
+      "transition_out": "fadeout",
+      "animation": {
+        "animation_type": "slide-left",
+        "start_time": 0.0,
+        "end_time": 6.5
+      }
+    },
+    {
+      "product_id": "B09X1P3J6G",
+      "duration": 6,
+      "caption": "Livpure GLO PRO++: 58% off! 7-stage advanced purification & free installation. Perfect for borewell & tanker water.",
+      "highlight_words": ["58% off", "7-stage advanced purification", "free installation", "borewell & tanker water"],
+      "highlight_colors": ["#FF5733", "#00BFFF", "#28A745", "#FF5733"],
+      "caption_position": "bottom",
+      "rotation_degree": 0,
+      "transition_in": "zoom-in",
+      "transition_out": "zoom-out",
+      "animation": {
+        "animation_type": "fade-in",
+        "start_time": 0.0,
+        "end_time": 5.5
+      }
+    }
+  ]
+  
