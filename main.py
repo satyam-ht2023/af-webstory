@@ -31,14 +31,14 @@ def is_valid_url(url):
 def get_url():
     story_url = request.args.get('storyURL')
     if story_url and is_valid_url(story_url):
-        process()
-        return "tested"
+        return process(story_url)
     else:
         return jsonify({"error": "Invalid URL"}), 400
 
 def process(url: str):
-    project_id = f"webstory_{uuid.uuid4()}"
-    project_id = "webstory_55a5d416-96a5-493d-9afc-da256b58e363"
+    widget_id = uuid.uuid4()
+    project_id = f"webstory_{widget_id}"
+    #project_id = "webstory_55a5d416-96a5-493d-9afc-da256b58e363"
     output_path = f"working_dir/{project_id}"
     if not os.path.exists("working_dir"):
         os.makedirs("working_dir")
@@ -49,9 +49,11 @@ def process(url: str):
     print("Project: " + project_id)
     story_data : StoryData = DataProvider(url).get_data()
     video_script : VideoSlide = VideoScript().generate_script(story_data)
-    #video_script = fetch_images_from_products(video_script, story_data.products)
-    #create_video_from_slides(video_script, story_data, output_path")
+    video_script = fetch_images_from_products(video_script, story_data.products)
+    create_video_from_slides(video_script, story_data, output_path)
     get_key_frames_script(url, story_data, video_script, output_path)
+
+    return widget_id
     
 
 if __name__ == '__main__':
